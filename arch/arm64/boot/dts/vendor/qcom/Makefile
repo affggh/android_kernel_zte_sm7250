@@ -76,6 +76,7 @@ dtbo-$(CONFIG_ARCH_LITO) += lito-rumi-overlay.dtbo \
                 lito-qrd-overlay.dtbo \
                 lito-v2-qrd-overlay.dtbo \
                 litomagnus-mtp-overlay.dtbo \
+                litomagnus-mtp-tenet-overlay.dtbo \
                 litomagnus-cdp-overlay.dtbo \
                 orchid-mtp-overlay.dtbo \
                 orchid-cdp-overlay.dtbo
@@ -91,6 +92,7 @@ lito-v2-atp-lcd-overlay.dtbo-base := lito-v2.dtb
 lito-qrd-overlay.dtbo-base := lito.dtb
 lito-v2-qrd-overlay.dtbo-base := lito-v2.dtb
 litomagnus-mtp-overlay.dtbo-base := litomagnus.dtb
+litomagnus-mtp-tenet-overlay.dtbo-base := litomagnus.dtb
 litomagnus-cdp-overlay.dtbo-base := litomagnus.dtb
 orchid-mtp-overlay.dtbo-base := orchid.dtb
 orchid-cdp-overlay.dtbo-base := orchid.dtb
@@ -106,6 +108,7 @@ dtb-$(CONFIG_ARCH_LITO) += lito-rumi.dtb \
                 lito-v2-atp-lcd.dtb \
                 lito-v2-qrd.dtb \
                 litomagnus-mtp.dtb \
+                litomagnus-mtp-tenet.dtb \
                 litomagnus-cdp.dtb \
                 orchid-mtp.dtb \
                 orchid-cdp.dtb

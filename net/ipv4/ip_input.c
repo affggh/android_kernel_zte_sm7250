@@ -501,7 +501,9 @@ static struct sk_buff *ip_rcv_core(struct sk_buff *skb, struct net *net)
 	IPCB(skb)->iif = skb->skb_iif;
 
 	/* Must drop socket now because of tproxy. */
-	skb_orphan(skb);
+	if (!skb_sk_is_prefetched(skb))
+		skb_orphan(skb);
+
 	/* ZTE_LC_IP_DEBUG, 20130509 start */
 	if ((tcp_socket_debugfs & TCP_IP_LOG_ENABLE) || ip_log_pm == 1) { /* ZTE_PM_TCP  lcf@20160523 */
     /* here it is IPV4 */

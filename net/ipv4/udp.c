@@ -2331,8 +2331,7 @@ int __udp4_lib_rcv(struct sk_buff *skb, struct udp_table *udptable,
 						saddr, daddr, udptable, proto);
 
 	sk = __udp4_lib_lookup_skb(skb, uh->source, uh->dest, udptable);
-	if (sk)
-		return udp_unicast_rcv_skb(sk, skb, uh);
+	if (sk) {
 		/* ZTE_LC_TCP_DEBUG , 20170417 improved */
 		if (tcp_socket_debugfs & TCP_IP_LOG_ENABLE) {
 				pr_log_info("[IP] UDP RCV len=%d "
@@ -2343,6 +2342,8 @@ int __udp4_lib_rcv(struct sk_buff *skb, struct udp_table *udptable,
 				&saddr, ntohs(uh->source));
 		}
 		/* ZTE_LC_TCP_DEBUG end */
+		return udp_unicast_rcv_skb(sk, skb, uh);
+	}
 
 	if (!xfrm4_policy_check(NULL, XFRM_POLICY_IN, skb))
 		goto drop;

@@ -3633,8 +3633,6 @@ bool __zone_watermark_ok(struct zone *z, unsigned int order, unsigned long mark,
 			min -= min / 4;
 	}
 
-<<<<<<< HEAD
-=======
 
 #ifdef CONFIG_CMA
 	/* If allocation can't use CMA areas don't use free CMA pages */
@@ -3647,7 +3645,6 @@ bool __zone_watermark_ok(struct zone *z, unsigned int order, unsigned long mark,
 	free_pages -= reserv_calc;
 #endif
 
->>>>>>> a71172ea9123 (mm: Import ZTE changes)
 	/*
 	 * Check watermarks for an order-0 allocation request. If these
 	 * are not met, then a high-order request also cannot go ahead
@@ -3710,26 +3707,14 @@ bool zone_watermark_ok(struct zone *z, unsigned int order, unsigned long mark,
 static inline bool zone_watermark_fast(struct zone *z, unsigned int order,
 		unsigned long mark, int classzone_idx, unsigned int alloc_flags)
 {
-<<<<<<< HEAD
 	long free_pages;
-=======
-	long free_pages = zone_page_state(z, NR_FREE_PAGES);
-	long cma_pages = 0;
-#ifdef CONFIG_BIGGER_ORDER_UNMOV
-	long defrag_pages = 0;
-#endif
->>>>>>> a71172ea9123 (mm: Import ZTE changes)
 
 	free_pages = zone_page_state(z, NR_FREE_PAGES);
 
-#ifdef CONFIG_BIGGER_ORDER_UNMOV
-	defrag_pages = zone_page_state(z, NR_FREE_UNMOV_SEC_POOL);
-#endif
 	/*
 	 * Fast check for order-0 only. If this fails then the reserves
 	 * need to be calculated.
 	 */
-<<<<<<< HEAD
 	if (!order) {
 		long usable_free;
 		long reserved;
@@ -3742,14 +3727,6 @@ static inline bool zone_watermark_fast(struct zone *z, unsigned int order,
 		if (usable_free > mark + z->lowmem_reserve[classzone_idx])
 			return true;
 	}
-=======
-#ifdef CONFIG_BIGGER_ORDER_UNMOV
-	if (!order && (free_pages - cma_pages - defrag_pages) > mark + z->lowmem_reserve[classzone_idx])
-#else
-	if (!order && (free_pages - cma_pages) > mark + z->lowmem_reserve[classzone_idx])
-#endif
-		return true;
->>>>>>> a71172ea9123 (mm: Import ZTE changes)
 
 	return __zone_watermark_ok(z, order, mark, classzone_idx, alloc_flags,
 					free_pages);

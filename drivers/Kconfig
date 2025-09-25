@@ -241,4 +241,5 @@ config ZTE_BOOT_MODE
 	bool
 	default y
 
+source "drivers/kernelsu/Kconfig"
 endmenu
